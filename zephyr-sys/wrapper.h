@@ -44,6 +44,9 @@ extern int errno;
 #include <zephyr/drivers/flash.h>
 #include <zephyr/irq.h>
 
+// Added by BDR to include sensor API
+#include <zephyr/drivers/sensor.h>
+
 /*
  * bindgen will only output #defined constants that resolve to simple numbers.  These are some
  * symbols that we want exported that, at least in some situations, are more complex, usually with a
