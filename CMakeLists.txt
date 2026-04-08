@@ -123,10 +123,17 @@ ${module}.path = \"$CACHE{RUST_MODULE_DIR}/${module}\"
     #   "--config"
     #   "patch.crates-io.${module}.path=\\\"$CACHE{RUST_MODULE_DIR}/${module}\\\""
     #   )
-    list(APPEND command_paths
-      "--config"
-      "patch.crates-io.${module}.path=\"$CACHE{RUST_MODULE_DIR}/${module}\""
-    )
+    foreach(module IN LISTS LIB_RUST_CRATES)
+      message(STATUS "module: ${module}")
+      
+      # We use a helper variable to build the TOML string clearly
+      set(PATCH_EXPR "patch.crates-io.${module}.path=\"$CACHE{RUST_MODULE_DIR}/${module}\"")
+      
+      list(APPEND command_paths
+        "--config"
+        "${PATCH_EXPR}"
+      )
+    endforeach()
   endforeach()
 
   # Write out a cargo config file that can be copied into `.cargo/config.toml` (or made a
