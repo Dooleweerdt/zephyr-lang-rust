@@ -119,10 +119,14 @@ function(rust_cargo_application)
       "${config_paths}\
 ${module}.path = \"$CACHE{RUST_MODULE_DIR}/${module}\"
 ")
+    # list(APPEND command_paths
+    #   "--config"
+    #   "patch.crates-io.${module}.path=\\\"$CACHE{RUST_MODULE_DIR}/${module}\\\""
+    #   )
     list(APPEND command_paths
       "--config"
-      "patch.crates-io.${module}.path=\\\"$CACHE{RUST_MODULE_DIR}/${module}\\\""
-      )
+      "patch.crates-io.${module}.path=\"$CACHE{RUST_MODULE_DIR}/${module}\""
+    )
   endforeach()
 
   # Write out a cargo config file that can be copied into `.cargo/config.toml` (or made a
