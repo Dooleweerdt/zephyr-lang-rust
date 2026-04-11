@@ -214,6 +214,19 @@ DT_AUGMENTS = \"${DT_AUGMENTS}\"
 ${config_paths}
 ")
 
+  # The block of environment variables below could theoretically be captured in a variable, but this
+  # seems "challenging" in CMake (to be polite), as many of these contain spaces, and the quoting
+  # rules in CMake are inconsistent, at best.
+  # TODO: Figure out how to factor these out.
+
+  # Debug prints!
+  message(STATUS "------------------------------------------------------------")
+  message(STATUS "RUST CONFIG_PATH ARGUMENT: ${rust_build_type_arg}")
+  message(STATUS "RUST COMMAND_PATH ARGUMENT: ${command_paths}")
+  message(STATUS "RUST TARGET: ${RUST_TARGET}")
+  message(STATUS "CARGO TARGET DIR: ${CARGO_TARGET_DIR}")
+  message(STATUS "------------------------------------------------------------")
+
   # The library is built by invoking Cargo.
   add_cargo_target_with_zephyr_env(librustapp
     ALL
@@ -222,13 +235,6 @@ ${config_paths}
     CARGO_ARGS build
     COMMENT "Building Rust application"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    # Debug prints!
-    message(STATUS "------------------------------------------------------------")
-    message(STATUS "RUST CONFIG_PATH ARGUMENT: ${rust_build_type_arg}")
-    message(STATUS "RUST COMMAND_PATH ARGUMENT: ${command_paths}")
-    message(STATUS "RUST TARGET: ${RUST_TARGET}")
-    message(STATUS "CARGO TARGET DIR: ${CARGO_TARGET_DIR}")
-    message(STATUS "------------------------------------------------------------")
   )
 
   # Command to lint the Rust application.
