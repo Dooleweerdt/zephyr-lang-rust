@@ -123,6 +123,11 @@ ${module}.path = \"$CACHE{RUST_MODULE_DIR}/${module}\"
       "--config"
       "patch.crates-io.${module}.path=\\\"$CACHE{RUST_MODULE_DIR}/${module}\\\""
       )
+    # Debug prints!
+    message(STATUS "------------------------------------------------------------")
+    message(STATUS "RUST CONFIG_PATH ARGUMENT: ${config_paths}")
+    message(STATUS "RUST COMMAND_PATH ARGUMENT: ${command_paths}")
+    message(STATUS "------------------------------------------------------------")
   endforeach()
 
   # Write out a cargo config file that can be copied into `.cargo/config.toml` (or made a
