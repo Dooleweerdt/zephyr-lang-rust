@@ -123,11 +123,6 @@ ${module}.path = \"$CACHE{RUST_MODULE_DIR}/${module}\"
       "--config"
       "patch.crates-io.${module}.path=\\\"$CACHE{RUST_MODULE_DIR}/${module}\\\""
       )
-    # Debug prints!
-    message(STATUS "------------------------------------------------------------")
-    message(STATUS "RUST CONFIG_PATH ARGUMENT: ${config_paths}")
-    message(STATUS "RUST COMMAND_PATH ARGUMENT: ${command_paths}")
-    message(STATUS "------------------------------------------------------------")
   endforeach()
 
   # Write out a cargo config file that can be copied into `.cargo/config.toml` (or made a
@@ -194,6 +189,14 @@ ${config_paths}
       --target-dir ${CARGO_TARGET_DIR}
     COMMENT "Building Rust application"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    # Debug prints!
+    message(STATUS "------------------------------------------------------------")
+    message(STATUS "RUST CONFIG_PATH ARGUMENT: ${rust_build_type_arg}")
+    message(STATUS "RUST COMMAND_PATH ARGUMENT: ${command_paths}")
+    message(STATUS "RUST TARGET: ${RUST_TARGET}")
+    message(STATUS "CARGO TARGET DIR: ${CARGO_TARGET_DIR}")
+    message(STATUS "------------------------------------------------------------")
+
   )
 
   # Be sure we don't try building this until all of the generated headers have been generated.
