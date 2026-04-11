@@ -157,6 +157,14 @@ ${config_paths}
   # rules in CMake are inconsistent, at best.
   # TODO: Figure out how to factor these out.
 
+  # Debug prints!
+  message(STATUS "------------------------------------------------------------")
+  message(STATUS "RUST CONFIG_PATH ARGUMENT: ${rust_build_type_arg}")
+  message(STATUS "RUST COMMAND_PATH ARGUMENT: ${command_paths}")
+  message(STATUS "RUST TARGET: ${RUST_TARGET}")
+  message(STATUS "CARGO TARGET DIR: ${CARGO_TARGET_DIR}")
+  message(STATUS "------------------------------------------------------------")
+
   # The library is built by invoking Cargo.
   add_custom_command(
     OUTPUT ${DUMMY_FILE}
@@ -189,14 +197,6 @@ ${config_paths}
       --target-dir ${CARGO_TARGET_DIR}
     COMMENT "Building Rust application"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    # Debug prints!
-    message(STATUS "------------------------------------------------------------")
-    message(STATUS "RUST CONFIG_PATH ARGUMENT: ${rust_build_type_arg}")
-    message(STATUS "RUST COMMAND_PATH ARGUMENT: ${command_paths}")
-    message(STATUS "RUST TARGET: ${RUST_TARGET}")
-    message(STATUS "CARGO TARGET DIR: ${CARGO_TARGET_DIR}")
-    message(STATUS "------------------------------------------------------------")
-
   )
 
   # Be sure we don't try building this until all of the generated headers have been generated.
