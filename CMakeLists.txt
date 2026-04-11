@@ -235,6 +235,7 @@ ${config_paths}
     CARGO_ARGS build
     COMMENT "Building Rust application"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    VERBATIM # To use platform-specific escaping rules, and to ensure the command is not mangled by CMake in any way.
   )
 
   # Command to lint the Rust application.
