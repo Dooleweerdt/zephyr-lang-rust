@@ -197,7 +197,6 @@ ${config_paths}
       --target-dir ${CARGO_TARGET_DIR}
     COMMENT "Building Rust application"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    VERBATIM # To use platform-specific escaping rules, and to ensure the command is not mangled by CMake in any way.
   )
 
   # Be sure we don't try building this until all of the generated headers have been generated.
