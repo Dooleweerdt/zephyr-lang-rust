@@ -234,7 +234,6 @@ ${config_paths}
     BYPRODUCTS ${RUST_LIBRARY} ${WRAPPER_FILE}
     CARGO_ARGS build
     COMMENT "Building Rust application"
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
 
   # Command to lint the Rust application.
